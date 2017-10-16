@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
     master.vm.provision "shell", inline: "yum -y install epel-release && yum repolist && yum -y install ansible xorg-x11-xauth"
     # Step 10a provision
     master.vm.provision "guest_ansible" do |guest_ansible|
-      guest_ansible.playbook = "Ansible_Gnome_GUI_Role/site.yml"
+      guest_ansible.playbook = "Ansible_VOTCA-dev/site.yml"
       guest_ansible.sudo = true
     end
   end
