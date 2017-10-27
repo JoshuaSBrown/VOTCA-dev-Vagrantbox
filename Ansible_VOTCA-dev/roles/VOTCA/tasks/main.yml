@@ -1,0 +1,63 @@
+---
+
+- copy:
+    src: cmake3.repo
+    dest: /home/vagrant/VOTCA
+    mode: 0644
+
+- copy:
+    src: fftw-libs-3.3.3-8.el7.x86_64.rpm
+    dest: /home/vagrant/VOTCA
+    mode: 0644
+
+# - name: install fftw3
+#   command: rpm -i fftw-libs-3.3.3-8.el7.x86_64.rpm
+#   args:
+#     chdir: /home/vagrant/VOTCA
+
+- name: install git
+  yum:
+    name: git
+    state: present
+
+- name: install compiler
+  yum:
+    name: gcc-c++
+    state: latest
+
+- git:
+    repo: https://github.com/votca/votca.git
+    dest: /home/vagrant/VOTCA
+
+- file:
+    path: /home/vagrant/VOTCA/build
+    state: directory
+    mode: 0755
+
+# - name: yum update
+#   command: yum update
+
+- name: install cmake
+  yum:
+    name: cmake3
+    state: latest
+
+- name: install fftw
+  yum:
+    name: fftw3
+    state: latest
+
+- name: upgrade all packages
+  yum:
+    name: '*'
+    state: latest
+
+- name: build command 1
+  command: cmake3 -DBUILD_CSGAPPS=ON -DBUILD_CTP=ON -DBUILD_XTP=ON ..
+  args:
+    chdir: /home/vagrant/VOTCA/build
+
+- name: build command 2
+  command: make -j5
+  args:
+    chdir: /home/vagrant/VOTCA/build
