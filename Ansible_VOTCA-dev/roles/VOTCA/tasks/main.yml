@@ -1,19 +1,59 @@
 ---
 
-- copy:
-    src: cmake3.repo
-    dest: /home/vagrant/VOTCA
-    mode: 0644
+- file:
+    path: /home/vagrant/VOTCA/
+    state: directory
+    mode: 0755
 
 - copy:
     src: fftw-libs-3.3.3-8.el7.x86_64.rpm
-    dest: /home/vagrant/VOTCA
+    dest: /home/vagrant/fftw-libs-3.3.3-8.el7.x86_64.rpm
     mode: 0644
 
-# - name: install fftw3
-#   command: rpm -i fftw-libs-3.3.3-8.el7.x86_64.rpm
-#   args:
-#     chdir: /home/vagrant/VOTCA
+- copy:
+    src: fftw-devel-3.3.3-8.el7.x86_64.rpm
+    dest: /home/vagrant/fftw-devel-3.3.3-8.el7.x86_64.rpm
+    mode: 0644
+
+- name: install fftw3
+  yum:
+    name: /home/vagrant/fftw-libs-3.3.3-8.el7.x86_64.rpm
+    state: present
+
+- name: install fftw3-devel
+  yum:
+    name: /home/vagrant/fftw-devel-3.3.3-8.el7.x86_64.rpm
+    state: present
+
+- name: Install expat
+  yum:
+    name: expat
+    state: latest
+
+- name: Install expat development
+  yum:
+    name: expat-devel
+    state: latest
+
+- name: Install gsl
+  yum:
+    name: gsl
+    state: latest
+
+- name: Install gsl development
+  yum:
+    name: gsl-devel
+    state: latest
+
+- name: Install sqlite3
+  yum:
+    name: sqlite
+    state: latest
+
+- name: Install sqlite-devel
+  yum:
+    name: sqlite-devel
+    state: latest
 
 - name: install git
   yum:
@@ -27,7 +67,7 @@
 
 - git:
     repo: https://github.com/votca/votca.git
-    dest: /home/vagrant/VOTCA
+    dest: /home/vagrant/VOTCA/
 
 - file:
     path: /home/vagrant/VOTCA/build
@@ -42,18 +82,46 @@
     name: cmake3
     state: latest
 
-- name: install fftw
+#- name: install fftw
+#  yum:
+#    name: fftw3
+#    state: latest
+
+- name: install Doxygen
   yum:
-    name: fftw3
+    name: doxygen
     state: latest
 
-- name: upgrade all packages
+- name: install TXT2TAGS
   yum:
-    name: '*'
+    name: txt2tags
     state: latest
+
+- name: install boost
+  yum:
+    name: boost
+    state: latest
+
+- name: install boost-devel
+  yum:
+    name: boost-devel
+    state: latest
+
+# - name: install GROMACS
+#   yum:
+#     name: gromacs
+#     state: latest
+
+# - name: upgrade all packages
+#   yum:
+#     name: '*'
+#     state: latest
+
+# - name: remove build folder
+#   command: rm -rf /home/vagrant/VOTCA/build
 
 - name: build command 1
-  command: cmake3 -DBUILD_CSGAPPS=ON -DBUILD_CTP=ON -DBUILD_XTP=ON ..
+  command: cmake3 -DBUILD_CSGAPPS=ON -DBUILD_CTP=ON -DBUILD_XTP=ON ../
   args:
     chdir: /home/vagrant/VOTCA/build
 
