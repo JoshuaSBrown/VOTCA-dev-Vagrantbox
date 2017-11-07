@@ -1,124 +1,132 @@
 ---
 
+- name: Group mark GNOME Desktop
+  command: yum groups mark install "GNOME Desktop"
+
+- name: Convert GNOME Desktop
+  command: yum groups mark convert "GNOME Desktop"
+
+- name: Group install GNOME Desktop
+  command: yum groupinstall "GNOME Desktop"
 #- name: Install X Window System
 #  yum:
 #    name: "X Window System"
 #    state: present
-
-- name: Install glx-utils 
-  yum:
-    name: glx-utils
-    state: present
-
-- name: Install mesa-dri-drivers
-  yum:
-    name: mesa-dri-drivers
-    state: present
-
-- name: Install plymouth-system-theme
-  yum:
-    name: plymouth-system-theme
-    state: present
-
-- name: Install spice-vdagent
-  yum:
-    name: spice-vdagent
-    state: present
-
-- name: Install xorg-x11-drivers
-  yum:
-    name: xorg-x11-drivers
-    state: present
-
-- name: Install xorg-x11-server-Xorg
-  yum:
-    name: xorg-x11-server-Xorg
-    state: present
-
-- name: Install xorg-x11-utils
-  yum:
-    name: xorg-x11-utils
-    state: present
-
-- name: Install xorg-x11-xauth
-  yum:
-    name: xorg-x11-xauth
-    state: present
-
-- name: Install xorg-x11-xinit
-  yum:
-    name: xorg-x11-xinit
-    state: present
-
-- name: Install xvattr
-  yum:
-    name: xvattr
-    state: present
-
-- name: Install initial-setup 
-  yum:
-    name: initial-setup
-    state: present
-
-- name: Install initial-setup-gui
-  yum:
-    name: initial-setup-gui
-    state: present
-
-- name: Install tigervnc-server
-  yum:
-    name: tigervnc-server
-    state: present
-
-- name: Install xorg-x11-drv-keyboard
-  yum:
-    name: xorg-x11-drv-keyboard
-    state: present
-
-- name: Install xorg-x11-drv-mouse
-  yum:
-    name: xorg-x11-drv-mouse
-    state: present
-
-- name: Install xorg-x11-drv-openchrome
-  yum:
-    name: xorg-x11-drv-openchrome
-    state: present
-
-- name: Install gnome-classic-session
-  yum:
-    name: gnome-classic-session
-    state: present
-
-- name: Install gnome-terminal
-  yum:
-    name: gnome-terminal
-    state: present
-
-#- name: Install nautilus-open-terminal
+#
+#- name: Install glx-utils 
 #  yum:
-#    name: nautilus-open-terminal
+#    name: glx-utils
 #    state: present
-
-- name: Install control-center
-  yum:
-    name: control-center
-    state: present
-
-- name: Install liberation-mono-fonts
-  yum:
-    name: liberation-mono-fonts
-    state: present
-
-- name: Copy google-chrome.repo file to /etc/yum.repos.d
-  copy:
-    src: "google-chrome.repo"
-    dest: "/etc/yum.repos.d/google-chrome.repo"
-    owner: root
-    group: root
-    mode: 0644
-
-- name: Install chrome web browser
-  yum:
-    name: google-chrome-stable
-    state: present
+#
+#- name: Install mesa-dri-drivers
+#  yum:
+#    name: mesa-dri-drivers
+#    state: present
+#
+#- name: Install plymouth-system-theme
+#  yum:
+#    name: plymouth-system-theme
+#    state: present
+#
+#- name: Install spice-vdagent
+#  yum:
+#    name: spice-vdagent
+#    state: present
+#
+#- name: Install xorg-x11-drivers
+#  yum:
+#    name: xorg-x11-drivers
+#    state: present
+#
+#- name: Install xorg-x11-server-Xorg
+#  yum:
+#    name: xorg-x11-server-Xorg
+#    state: present
+#
+#- name: Install xorg-x11-utils
+#  yum:
+#    name: xorg-x11-utils
+#    state: present
+#
+#- name: Install xorg-x11-xauth
+#  yum:
+#    name: xorg-x11-xauth
+#    state: present
+#
+#- name: Install xorg-x11-xinit
+#  yum:
+#    name: xorg-x11-xinit
+#    state: present
+#
+#- name: Install xvattr
+#  yum:
+#    name: xvattr
+#    state: present
+#
+#- name: Install initial-setup 
+#  yum:
+#    name: initial-setup
+#    state: present
+#
+#- name: Install initial-setup-gui
+#  yum:
+#    name: initial-setup-gui
+#    state: present
+#
+#- name: Install tigervnc-server
+#  yum:
+#    name: tigervnc-server
+#    state: present
+#
+#- name: Install xorg-x11-drv-keyboard
+#  yum:
+#    name: xorg-x11-drv-keyboard
+#    state: present
+#
+#- name: Install xorg-x11-drv-mouse
+#  yum:
+#    name: xorg-x11-drv-mouse
+#    state: present
+#
+#- name: Install xorg-x11-drv-openchrome
+#  yum:
+#    name: xorg-x11-drv-openchrome
+#    state: present
+#
+#- name: Install gnome-classic-session
+#  yum:
+#    name: gnome-classic-session
+#    state: present
+#
+#- name: Install gnome-terminal
+#  yum:
+#    name: gnome-terminal
+#    state: present
+#
+##- name: Install nautilus-open-terminal
+##  yum:
+##    name: nautilus-open-terminal
+##    state: present
+#
+#- name: Install control-center
+#  yum:
+#    name: control-center
+#    state: present
+#
+#- name: Install liberation-mono-fonts
+#  yum:
+#    name: liberation-mono-fonts
+#    state: present
+#
+#- name: Copy google-chrome.repo file to /etc/yum.repos.d
+#  copy:
+#    src: "google-chrome.repo"
+#    dest: "/etc/yum.repos.d/google-chrome.repo"
+#    owner: root
+#    group: root
+#    mode: 0644
+#
+#- name: Install chrome web browser
+#  yum:
+#    name: google-chrome-stable
+#    state: present

@@ -3,13 +3,25 @@
 Vagrant.configure("2") do |config|
   config.ssh.forward_agent = true
   config.ssh.forward_x11   = true
+
+
  # Configure the main server/master node
   config.vm.define "master" do |master|
 
     master.vm.provider 'virtualbox' do |v|
       v.gui = true
-      v.memory = 1024
+      v.memory = 2048
       v.cpus = 1
+      v.customize "pre-boot", [
+                  "storageattach", :id,
+                  "--storagectl", "IDE",
+                  "--port", "1",
+                  "--device", "0",
+                  "--type", "dvddrive",
+                  "--medium", "emptydrive",
+                  ]
+
+
     end
 
     # Step 3a configure os

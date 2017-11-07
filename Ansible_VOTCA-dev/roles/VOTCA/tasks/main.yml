@@ -1,10 +1,5 @@
 ---
 
-- file:
-    path: /home/vagrant/VOTCA/
-    state: directory
-    mode: 0755
-
 - name: Install expat
   yum:
     name: expat
@@ -35,18 +30,6 @@
     name: sqlite-devel
     state: latest
 
-- file:
-    path: /home/vagrant/VOTCA/build
-    state: directory
-    mode: 0755
-
-# - name: yum update
-#   command: yum update
-#- name: install fftw
-#  yum:
-#    name: fftw3
-#    state: latest
-
 - name: install Doxygen
   yum:
     name: doxygen
@@ -56,25 +39,40 @@
   yum:
     name: txt2tags
     state: latest
-# - name: install GROMACS
-#   yum:
-#     name: gromacs
-#     state: latest
-
 # - name: upgrade all packages
 #   yum:
 #     name: '*'
 #     state: latest
+- name: Clean old votca folders and files if present
+  file:
+    state: absent
+    path: /home/vagrant/VOTCA
 
-# - name: remove build folder
-#   command: rm -rf /home/vagrant/VOTCA/build
+- git:
+    repo: 'https://github.com/votca/votca.git'
+    dest: /home/vagrant/VOTCA
+    recursive: yes
+  become: yes
+  become_user: vagrant
+
+- file:
+    path: /home/vagrant/VOTCA/build
+    state: directory
+    mode: 0755
+  become: yes
+  become_user: vagrant
 
 - name: build command 1
-  command: cmake3 -DBUILD_CSGAPPS=ON -DBUILD_CTP=ON -DBUILD_XTP=ON ../
+  shell: source /usr/local/gromacs/bin/GMXRC.bash; cmake3 -DBUILD_CSGAPPS=ON -DBUILD_CTP=ON -DBUILD_XTP=ON ../
   args:
+    executable: /bin/bash
     chdir: /home/vagrant/VOTCA/build
+  become: yes
+  become_user: vagrant
 
 - name: build command 2
   command: make -j5
   args:
     chdir: /home/vagrant/VOTCA/build
+  become: yes
+  become_user: vagrant

@@ -2,7 +2,8 @@
 
 - hosts: all
   roles:
-    #- gui
-    - DEPENDENCIES
+#    - gui
+#    - guest_additions
+    - dependencies
     - GROMACS
     - VOTCA
