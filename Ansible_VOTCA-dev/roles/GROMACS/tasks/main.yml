@@ -1,0 +1,41 @@
+---
+
+- copy:
+    src: gromacs-2016.4.tar.gz
+    dest: /home/vagrant/gromacs-2016.4.tar.gz
+    mode: 0644
+    group: root
+    owner: root
+
+- name: Untar gromacs
+  unarchive:
+    src: /home/vagrant/gromacs-2016.4.tar.gz
+    dest: /home/vagrant/
+
+- file:
+    path:  /home/vagrant/gromacs-2016.4/build
+    state: directory
+    mode:  0755
+
+- name: Calling cmake on gromacs
+  command: cmake3 .. -DGMX_BUILD_OWN_FFTW=ON -DGRESSIONTEST_DOWNLOAD=ON
+  args:
+    chdir: /home/vagrant/gromacs-2016.4/build
+
+- name: Calling make
+  command: make
+  args:
+    chdir: /home/vagrant/gromacs-2016.4/build
+
+- name: Calling make check
+  command: make check
+  args: 
+    chdir: /home/vagrant/gromacs-2016.4/build
+  
+- name: Calling make install
+  command: make install
+  args: 
+    chdir: /home/vagrant/gromacs-2016.4/build
+
+- name: Sourcing environmental variables
+  command: /usrlocal/gromacs/bin/GMXRC.bash

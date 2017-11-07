@@ -1,0 +1,57 @@
+---
+
+- copy:
+    src: fftw-libs-3.3.3-8.el7.x86_64.rpm
+    dest: /home/vagrant/fftw-libs-3.3.3-8.el7.x86_64.rpm
+    mode: 0644
+
+- copy:
+    src: fftw-devel-3.3.3-8.el7.x86_64.rpm
+    dest: /home/vagrant/fftw-devel-3.3.3-8.el7.x86_64.rpm
+    mode: 0644
+
+- name: install fftw3
+  yum:
+    name: /home/vagrant/fftw-libs-3.3.3-8.el7.x86_64.rpm
+    state: present
+
+- name: install fftw3-devel
+  yum:
+    name: /home/vagrant/fftw-devel-3.3.3-8.el7.x86_64.rpm
+    state: present
+
+- name: install git
+  yum:
+    name: git
+    state: present
+
+- name: install compiler
+  yum:
+    name: gcc-c++
+    state: latest
+
+- name: install git
+  yum:
+    name: git
+    state: present
+
+- name: install compiler
+  yum:
+    name: gcc-c++
+    state: latest
+
+- name: install cmake
+  yum:
+    name: cmake3
+    state: latest
+
+- name: install boost
+  yum:
+    name: boost
+    state: latest
+
+- name: install boost-devel
+  yum:
+    name: boost-devel
+    state: latest
+

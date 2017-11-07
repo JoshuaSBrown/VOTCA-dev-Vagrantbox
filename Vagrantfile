@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
     master.vm.box = "centos/7"
 
     # Step 4a Define host name
-    master.vm.hostname = "JH-Kubernetes-master"
+    master.vm.hostname = "votca-devel-env"
     # Step 5a configure network
     master.vm.network "private_network", ip: "192.168.1.10"
     # Step 6a allow host to be able to access guest notebook on port 8001
