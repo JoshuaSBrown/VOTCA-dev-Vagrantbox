@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
 
     # Step 1 configure os
     #master.vm.box = "centos/7"
-    master.vm.box = "pbarriscale/centos7-gui"
+    master.vm.box = "nhalm/centos7-gui"
 
     # Step 2 Define host name
     master.vm.hostname = "votca-devel-env"
