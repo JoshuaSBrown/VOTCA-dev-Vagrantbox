@@ -39,10 +39,7 @@
   yum:
     name: txt2tags
     state: latest
-# - name: upgrade all packages
-#   yum:
-#     name: '*'
-#     state: latest
+
 - name: Clean old votca folders and files if present
   file:
     state: absent
@@ -62,17 +59,23 @@
   become: yes
   become_user: vagrant
 
-- name: build command 1
-  shell: source /usr/local/gromacs/bin/GMXRC.bash; cmake3 -DBUILD_CSGAPPS=ON -DBUILD_CTP=ON -DBUILD_XTP=ON ../
+- name: build command cmake
+  shell: source /usr/local/gromacs/bin/GMXRC.bash; cmake3 -DBUILD_CSGAPPS=ON -DBUILD_CTP=ON -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=/usr/local/bin ../
   args:
     executable: /bin/bash
     chdir: /home/vagrant/VOTCA/build
   become: yes
   become_user: vagrant
 
-- name: build command 2
+- name: build command make
   command: make -j5
   args:
     chdir: /home/vagrant/VOTCA/build
   become: yes
   become_user: vagrant
+
+- name: build make install
+  command: make install
+  args:
+    chdir: /home/vagrant/VOTCA/build
+  
