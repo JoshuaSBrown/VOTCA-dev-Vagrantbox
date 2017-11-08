@@ -78,4 +78,16 @@
   command: make install
   args:
     chdir: /home/vagrant/VOTCA/build
-  
+    
+- name: Copy .bashrc file with env variables for VOTCA installation 
+  copy:
+    src:   .bashrc
+    dest:  /home/vagrant/.bashrc
+    mode:  0644
+    owner: vagrant
+    group: vagrant
+
+- name: Source the bash file to ensure enviornment variables are up to date
+  command: bash /home/vagrant/.bashrc
+  become: yes
+  become_user: vagrant
