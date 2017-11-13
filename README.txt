@@ -1,7 +1,7 @@
-#############
+############
 # Developers
 #############
-The Vagrant file and ansible playbook have been develoed by Carlo Scanes and Joshua Brown. If you have questions or suggestion feel free to contact me at. 
+The Vagrant file and ansible playbook have been developed by Carlo Scanelli and Joshua Brown. If you have questions or suggestion feel free to contact me at. 
 
 joshbro42867@yahoo.com
 
