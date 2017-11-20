@@ -1,0 +1,11 @@
+---
+
+- name: Install JDK
+  yum:
+    name: jdk
+    state: latest
+
+- name: Install JRE
+  yum:
+    name: jre
+    state: latest

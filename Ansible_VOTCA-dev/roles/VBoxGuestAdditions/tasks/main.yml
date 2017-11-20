@@ -1,0 +1,10 @@
+---
+
+- copy:
+    src:  VBoxGuestAdditions 
+    dest: /home/vagrant/Downloads/VBoxGuestAdditions
+    owner: vagrant
+    group: vagrant
+    
+- name: Install GuestAdditions
+  shell: /home/vagrant/Downloads/VBoxGuestAdditions/VBoxLinuxAdditions.run 

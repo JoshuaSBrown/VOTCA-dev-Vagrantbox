@@ -12,6 +12,7 @@ Vagrant.configure("2") do |config|
       v.gui = true
       v.memory = 4096
       v.cpus = 2
+      v.customize ['modifyvm',:id,"--vram","24"]
     end
 
     # Step 1 configure os

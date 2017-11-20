@@ -3,5 +3,7 @@
 - hosts: all
   roles:
     - dependencies
+    - VBoxGuestAdditions
     - GROMACS
     - VOTCA
+    - netbeans

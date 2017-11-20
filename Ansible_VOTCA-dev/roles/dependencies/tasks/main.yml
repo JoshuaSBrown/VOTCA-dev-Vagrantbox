@@ -1,23 +1,29 @@
 ---
 
+- name: Update yum
+  yum:
+    name: '*'
+    state: latest
+    skip_broken: yes
+
 - copy:
     src: fftw-libs-3.3.3-8.el7.x86_64.rpm
-    dest: /home/vagrant/fftw-libs-3.3.3-8.el7.x86_64.rpm
+    dest: /home/vagrant/Downloads/fftw-libs-3.3.3-8.el7.x86_64.rpm
     mode: 0644
 
 - copy:
     src: fftw-devel-3.3.3-8.el7.x86_64.rpm
-    dest: /home/vagrant/fftw-devel-3.3.3-8.el7.x86_64.rpm
+    dest: /home/vagrant/Downloads/fftw-devel-3.3.3-8.el7.x86_64.rpm
     mode: 0644
 
 - name: install fftw3
   yum:
-    name: /home/vagrant/fftw-libs-3.3.3-8.el7.x86_64.rpm
+    name: /home/vagrant/Downloads/fftw-libs-3.3.3-8.el7.x86_64.rpm
     state: present
 
 - name: install fftw3-devel
   yum:
-    name: /home/vagrant/fftw-devel-3.3.3-8.el7.x86_64.rpm
+    name: /home/vagrant/Downloads/fftw-devel-3.3.3-8.el7.x86_64.rpm
     state: present
 
 - name: install git
@@ -54,4 +60,5 @@
   yum:
     name: boost-devel
     state: latest
+
 
